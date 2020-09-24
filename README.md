@@ -1,4 +1,14 @@
-# れあｄめ
+# れあｄめ.md
+## What's this?
+gym を使って、強化学習の実装の練習をしたものをここに残します。セミナーでも使うかもしれないので、以下に環境構築手順を示します。
+
+## download this repository (20/9/25現在)
+追記します。
+
+```bash
+$ git clone https://github.com/sinonome/RL-gym.git
+```
+
 ## env
 ### venv
 
