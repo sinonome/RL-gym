@@ -10,7 +10,35 @@ $ git clone https://github.com/sinonome/RL-gym.git
 ```
 
 ## env
-### venv
+### poetry
+こちらの環境構築は初心者なので間違っていたら教えてください。
+
+#### install by pip
+
+```bash
+$ pip install poetry
+```
+
+#### make venv
+
+```bash
+# dev ver
+$ poetry install
+# non-dev ver
+$ poetry install non-dev
+```
+
+#### activate
+```bash
+$ poetry shell
+```
+
+#### deactivate
+`deactivate` でできるらしいですが、これは罠なのでしてはいけません。`exit` しましょう。
+
+
+### venv (廃止)
+以下による環境構築をやめ、poetry による環境構築に移行しました。
 
 ```bash
 $ python -m venv venv
