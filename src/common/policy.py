@@ -7,10 +7,10 @@ class EpsilonGreedy:
             ----------
                 num_of_act: int
                     number of actions
-                
+
                 epsilon: float
                     ランダム行動の確率
-                
+
                 seed: int
                     乱数のシード
         """
