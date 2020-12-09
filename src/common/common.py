@@ -1,50 +1,114 @@
 import numpy as np
+from typing import Union
+
+# class Qtable:
+#     def __init__(
+#         self,
+#         num_of_env: int,
+#         num_of_act: int,
+#     ):
+#         """
+#             initialize
+
+#             Parameters
+#             ----------
+#                 num_of_env: int
+#                     number of state
+#                 num_of_act: int
+#                     number of action
+#         """
+#         self.noe = num_of_env
+#         self.noa = num_of_act
+#         self.table = None
+#         self.islearn = None
+
+#     def init(self):
+#         """
+#             学習をするときの初期化
+
+#             Parameters
+#             ----------
+#                 None
+
+#             Return
+#             ------
+#                 None1
+#         """
+#         self.table = np.zeros((self.noe, self.noa))
+#         self.islearn = False
+
+#     def finish_learn(self):
+#         if self.islearn is None:
+#             raise Exception("学習がはじまっていません。")
+#         elif self.islearn:
+#             raise Exception("既に学習が終了している関数です。")
+
+#         # 何かしらの設定
+#         self.islearn = True
+
+#     def act_opt(self, state):
+#         return np.argmax(self.table[state])
+
 
 class Qtable:
     def __init__(
         self,
-        num_of_env: int,
-        num_of_act: int,
+        array: np.ndarray = None
     ):
         """
             initialize
 
             Parameters
             ----------
-                num_of_env: int
-                    number of state
-                num_of_act: int
-                    number of action
+                array: np.ndarray
+                    q-table
         """
-        self.noe = num_of_env
-        self.noa = num_of_act
-        self.table = None
-        self.islearn = None
+        self.table = array
 
-    def init(self):
+    def init(
+        self,
+        array: np.ndarray = None,
+        num_of_env: int = None,
+        num_of_act: int = None,
+    ):
         """
-            学習をするときの初期化
+            関数の初期化をする。
 
             Parameters
             ----------
-                None
-
-            Return
-            ------
-                None1
+                array: np.ndarray
+                    特定の配列で初期化するときに指定する
+                num_of_env: int
+                    1以上の整数。0配列による初期化の時に選択
+                num_of_act: int
+                    1以上の整数。環境の大きさを指定しているのであればこれも指定しないとエラーを吐く
         """
-        self.table = np.zeros((self.noe, self.noa))
-        self.islearn = False
-    
-    def finish_learn(self):
-        if self.islearn is None:
-            raise Exception("学習がはじまっていません。")
-        elif self.islearn:
-            raise Exception("既に学習が終了している関数です。")
+        if array is not None:
+            self.table = array
 
-        # 何かしらの設定
-        self.islearn = True
-    
+        if num_of_env is None:
+            raise Exception("状態がセットされていません")
+        if num_of_act is None:
+            raise Exception("行動がセットされていません")
+
+        self.table = np.zeros((num_of_env, num_of_act))
+        self.islearn = False
+
     def act_opt(self, state):
+        # 最適行動を出力
         return np.argmax(self.table[state])
 
+    # その他
+    def __getitem__(self, key):
+        return self.table.__getitem__(key)
+
+    def __setitem__(self, key, value):
+        return self.table.__setitem__(key, value)
+
+    def __repr__(self):
+        return "Qtable" + self.table.__repr__()[5:]
+
+if __name__ == "__main__":
+    table = Qtable()
+    table.init(num_of_env = 3, num_of_act = 3)
+    import pdb; pdb.set_trace()
