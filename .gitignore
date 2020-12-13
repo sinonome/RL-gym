@@ -2,4 +2,6 @@
 test/
 poetry.lock
 
+*.png
+
 __pycache__
