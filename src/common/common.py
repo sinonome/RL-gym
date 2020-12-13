@@ -60,6 +60,16 @@ class Qtable:
     def __repr__(self):
         return "Qtable" + self.table.__repr__()[5:]
 
+
+class Alpha:
+    def __init__(self, size):
+        self.alpha = [0 for _ in range(size)]
+
+    def __getitem__(self, key):
+        self.alpha[key] += 1
+        return 1 / self.alpha[key]
+
+
 if __name__ == "__main__":
     table = Qtable()
     table.init(num_of_env = 3, num_of_act = 3)
